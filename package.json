@@ -1,0 +1,26 @@
+{
+  "name": "purple-prism",
+  "version": "1.0.0",
+  "description": "A Hugo theme component layered on top of the LoveIt theme.",
+  "main": "README.md",
+  "scripts": {
+    "format": "npx prettier -w .",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/exotica-jewelry/purple-prism.git"
+  },
+  "author": "Ivan Boothe <git@rootwork.org> (https://rootwork.org/)",
+  "license": "AGPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/exotica-jewelry/purple-prism/issues"
+  },
+  "homepage": "https://github.com/exotica-jewelry/purple-prism#readme",
+  "devDependencies": {
+    "husky": "^8.0.1",
+    "prettier": "^2.7.1",
+    "pretty-quick": "^3.1.3"
+  }
+}
