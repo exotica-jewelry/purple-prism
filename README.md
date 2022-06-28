@@ -17,10 +17,13 @@ Purple Prism is meant to be installed as a
 
 1. Doks requires [Node.js](https://nodejs.org/) to be installed on your local
    machine.
+
 2. Hugo modules require [Go to be installed](https://go.dev/dl/) as well.
+
 3. Make sure you have a reasonably-recent version of Hugo (`hugo version`).
    Modules were introduced in 0.55, but additional module-related commands and
    settings have continued to appear up through at least 0.84.2.
+
 4. Run `hugo mod help` and make sure you get back something that isn't an error,
    which confirms that the first two requirements have been met.
 
@@ -37,6 +40,7 @@ for more information.
    it in a subdirectory named `hugo`. If you have an existing site you want to
    integrate these themes into, it may be easiest to run these steps in a
    separate folder and then copy things over selectively.
+
 2. `cd` into the directory you just created and run:
 
 ```sh
@@ -45,15 +49,19 @@ wget -O - https://github.com/h-enk/doks-child-theme/archive/master.tar.gz | tar 
 
 Optionally, you may want to remove configuration files from the source theme,
 like `babel.config.js`, the theme-related Markdown files, and the Netlify
-configuration file. Be sure to leave the Node `package*.json` files in place. 3.
-Run `hugo mod init <repo_url>`, where `<repo_url>` is the protocol-less URL to
-your site's repo. For instance, this repo's URL would be
-`github.com/exotica-jewelry/purple-prism`. This will create a `go.mod` file. 4.
-Run `hugo mod get github.com/exotica-jewelry/purple-prism`. This will create a
-`go.sum` file. 5. Open the `config/_default/config.toml` file and find the
-`[module.hugoVersion]` section. Directly following that section, before the
-first `[[module.mounts]]` section, add the following (note indentation is
-important!):
+configuration file. Be sure to leave the Node `package*.json` files in place.
+
+3. Run `hugo mod init <repo_url>`, where `<repo_url>` is the protocol-less URL
+   to your site's repo. For instance, this repo's URL would be
+   `github.com/exotica-jewelry/purple-prism`. This will create a `go.mod` file.
+
+4. Run `hugo mod get github.com/exotica-jewelry/purple-prism`. This will create
+   a `go.sum` file.
+
+5. Open the `config/_default/config.toml` file and find the
+   `[module.hugoVersion]` section. Directly following that section, before the
+   first `[[module.mounts]]` section, add the following (note indentation is
+   important!):
 
 ```toml
   [[module.imports]]
@@ -62,6 +70,7 @@ important!):
 
 6. Run `npm install` (`yarn` won't work here, unfortunately) to pull in the Doks
    dependencies.
+
 7. Run `hugo server` to automatically download the Hugo modules and serve the
    site, viewable at [http://localhost:1313](http://localhost:1313).
 
