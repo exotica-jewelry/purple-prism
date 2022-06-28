@@ -2,32 +2,27 @@
 
 A [theme component](https://gohugo.io/hugo-modules/theme-components/) for the
 [Hugo](https://gohugo.io/) static site generator, layered on top of the
-[LoveIt theme](https://github.com/dillonzq/LoveIt).
+[Doks theme](https://github.com/h-enk/doks).
 
-Primarily this theme component is meant to be a stylistic "skin" on top of
-LoveIt, affecting the visual appearance but retaining the underlying
-functionality that makes LoveIt great.
+Primarily this theme component is meant to be a stylistic "skin" on top of Doks,
+affecting the visual appearance but retaining the underlying functionality that
+makes Doks great.
 
 ## Using this theme component
 
 Purple Prism is meant to be installed as a
-[Hugo module](https://gohugo.io/hugo-modules/), and will only have practical
-effect if used alongside LoveIt.
+[Hugo module](https://gohugo.io/hugo-modules/).
 
 ### Prerequisites
 
-If your site is already using Hugo modules, you can skip this section.
-
-1. [Go must be installed](https://go.dev/dl/) on your local machine.
-2. Make sure you have a reasonably-recent version of Hugo (`hugo version`).
+1. Doks requires [Node.js](https://nodejs.org/) to be installed on your local
+   machine.
+2. Hugo modules require [Go to be installed](https://go.dev/dl/) as well.
+3. Make sure you have a reasonably-recent version of Hugo (`hugo version`).
    Modules were introduced in 0.55, but additional module-related commands and
    settings have continued to appear up through at least 0.84.2.
-3. Run `hugo mod help` and make sure you get back something that isn't an error,
+4. Run `hugo mod help` and make sure you get back something that isn't an error,
    which confirms that the first two requirements have been met.
-4. From your Hugo site directory, run `hugo mod init <repo_url>`, where
-   `<repo_url>` is the protocol-less URL to your site's repo. For instance, this
-   repo's URL would be `github.com/exotica-jewelry/purple-prism`. This will
-   create `go.mod` and `go.sum` files, which you should commit to your repo.
 
 If you are new to Hugo modules, see
 [rootwork/hugo-module-site](https://github.com/rootwork/hugo-module-site) and
@@ -36,43 +31,54 @@ for more information.
 
 ### Installation
 
-Open your Hugo `config.toml` file and find the line beginning with `theme =`.
-Replace that line with the following:
-
-```toml
-[module]
-  [[module.imports]]
-    path = "github.com/exotica-jewelry/purple-prism" # Theme components
-  [[module.imports]]
-    path = "github.com/dillonzq/LoveIt" # Project theme
-```
-
-Hugo modules override from bottom to top, so this first imports the LoveIt
-theme, then imports the Purple Prism theme components which selectively override
-parts of LoveIt.
-
-Run `hugo` or `hugo server` and Hugo will automatically download the modules.
-
-### Configuration and sample posts
-
-If you are beginning a new site, you'll probably want to use LoveIt's
-`exampleSite`, prefilled with configuration options and sample Hugo posts. From
-your Hugo site directory, run:
+1. To begin a new site, run `hugo new site <site_name>`, where `<site_name>` is
+   the path-friendly name of your site. If you want to have your Hugo-related
+   files as a subdirectory of your project repo, run `hugo new site hugo` to put
+   it in a subdirectory named `hugo`. If you have an existing site you want to
+   integrate these themes into, it may be easiest to run these steps in a
+   separate folder and then copy things over selectively.
+2. `cd` into the directory you just created and run:
 
 ```sh
-wget -O - https://github.com/dillonzq/LoveIt/archive/master.tar.gz | tar xz && cp -a LoveIt-master/exampleSite/* . && rm -rf LoveIt-master && rm -f config.toml
+wget -O - https://github.com/h-enk/doks-child-theme/archive/master.tar.gz | tar xz && cp -a doks-child-theme-master/* . && rm -rf doks-child-theme-master && rm -f theme.toml
 ```
 
-Whether you're modifying an existing site or starting fresh, take a look at
-[dillonzq/LoveIt/exampleSite/config.toml](https://github.com/dillonzq/LoveIt/blob/master/exampleSite/config.toml)
-and copy over everything (except the `theme` and `themesDir` items) to your
-site's configuration file, modifying the values as needed.
-[Consult LoveIt's configuration documentation here.](https://hugoloveit.com/theme-documentation-basics/#3-configuration)
+Optionally, you may want to remove configuration files from the source theme,
+like `babel.config.js`, the theme-related Markdown files, and the Netlify
+configuration file. Be sure to leave the Node `package*.json` files in place. 3.
+Run `hugo mod init <repo_url>`, where `<repo_url>` is the protocol-less URL to
+your site's repo. For instance, this repo's URL would be
+`github.com/exotica-jewelry/purple-prism`. This will create a `go.mod` file. 4.
+Run `hugo mod get github.com/exotica-jewelry/purple-prism`. This will create a
+`go.sum` file. 5. Open the `config/_default/config.toml` file and find the
+`[module.hugoVersion]` section. Directly following that section, before the
+first `[[module.mounts]]` section, add the following (note indentation is
+important!):
 
-### Pulling in theme updates
+```toml
+  [[module.imports]]
+    path = "github.com/exotica-jewelry/purple-prism" # Theme components
+```
 
-Hugo modules are not updated automatically. To update all of your modules, from
-your Hugo site directory run:
+6. Run `npm install` (`yarn` won't work here, unfortunately) to pull in the Doks
+   dependencies.
+7. Run `hugo server` to automatically download the Hugo modules and serve the
+   site, viewable at [http://localhost:1313](http://localhost:1313).
+
+### Updating themes and dependencies
+
+[To update Doks](https://getdoks.org/docs/help/how-to-update/) and Doks
+dependencies, run `npm outdated` to get a list of Node packages (including Doks)
+that have available updates, then run `npm update <pkg>` to update them
+selectively.
+
+To update Purple Prism, run:
+
+```sh
+hugo mod get github.com/exotica-jewelry/purple-prism
+```
+
+Or, if you have additional Hugo modules, you can update all of them by running:
 
 ```sh
 hugo mod get -u ./...
@@ -80,17 +86,11 @@ hugo mod get -u ./...
 
 There are
 [other options](https://github.com/rootwork/hugo-module-site#updating-a-module)
-for updating an individual module or updating to a specific version.
+for updating to a specific version.
 
 ### Modifying the theme
 
-Settings from both Purple Prism and LoveIt can be overridden in the usual Hugo
+Settings from both Purple Prism and Doks can be overridden in the usual Hugo
 way: Adding files to your site subdirectories (`assets`, `static`, `data`,
 `i18n`, etc.) with the same name as files in either theme will override those
 files.
-
-Additionally, LoveIt provides `_override.scss` and `_custom.scss` files in
-[`exampleSite/assets/css`](https://github.com/dillonzq/LoveIt/tree/master/exampleSite/assets/css).
-See the
-[LoveIt documentation](https://hugoloveit.com/theme-documentation-basics/#33-style-customization)
-for details.
