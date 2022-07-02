@@ -1,5 +1,13 @@
 /** Custom styles */
 
+a {
+  text-decoration: underline;
+}
+
+.btn {
+  text-decoration: none;
+}
+
 .btn-bold {
   font-weight: bold;
 }
@@ -17,4 +25,22 @@
 .link-point {
   margin-left: 2rem;
   font-weight: bold;
+}
+
+@include media-breakpoint-up(sm) {
+  .img-align-right,
+  .img-align-left {
+    margin-top: 0;
+    width: calc(50% - 2rem);
+  }
+
+  .img-align-left {
+    float: left;
+    margin-right: 2rem;
+  }
+
+  .img-align-right {
+    float: right;
+    margin-left: 2rem;
+  }
 }
