@@ -2,11 +2,11 @@
 
 A [theme component](https://gohugo.io/hugo-modules/theme-components/) for the
 [Hugo](https://gohugo.io/) static site generator, layered on top of the
-[Doks theme](https://github.com/h-enk/doks).
+[Hyas theme](https://github.com/h-enk/hyas).
 
-Primarily this theme component is meant to be a stylistic "skin" on top of Doks,
-affecting the visual appearance but retaining the underlying functionality that
-makes Doks great.
+This theme component adds a stylistic "skin" on top of Hyas, affecting the
+visual appearance, as well as adding some shortcodes -- but it retains the
+underlying functionality that makes Hyas great.
 
 ## Using this theme component
 
@@ -15,8 +15,8 @@ Purple Prism is meant to be installed as a
 
 ### Prerequisites
 
-1. Doks requires [Node.js](https://nodejs.org/) to be installed on your local
-   machine.
+1. Hyas requires [Node.js](https://nodejs.org/) v16.x to be installed on your
+   local machine.
 
 2. Hugo modules require [Go to be installed](https://go.dev/dl/) as well.
 
@@ -44,12 +44,11 @@ for more information.
 2. `cd` into the directory you just created and run:
 
 ```sh
-wget -O - https://github.com/h-enk/doks-child-theme/archive/master.tar.gz | tar xz && cp -a doks-child-theme-master/* . && rm -rf doks-child-theme-master && rm -f theme.toml
+wget https://github.com/h-enk/hyas-child-theme/archive/refs/heads/master.zip -O master.zip && unzip master.zip && cp -a hyas-child-theme-master/* . && rm -rf hyas-child-theme-master && rm -f theme.toml && rm -f config.toml && rm master.zip
 ```
 
-Optionally, you may want to remove configuration files from the source theme,
-like `babel.config.js`, the theme-related Markdown files, and the Netlify
-configuration file. Be sure to leave the Node `package*.json` files in place.
+Optionally, you may want to remove the parent theme's Markdown files and Netlify
+configuration. Be sure to leave the Node `package*.json` files in place.
 
 3. Run `hugo mod init <repo_url>`, where `<repo_url>` is the protocol-less URL
    to your site's repo. For instance, this repo's URL would be
@@ -58,10 +57,9 @@ configuration file. Be sure to leave the Node `package*.json` files in place.
 4. Run `hugo mod get github.com/exotica-jewelry/purple-prism`. This will create
    a `go.sum` file.
 
-5. Open the `config/_default/config.toml` file and find the
-   `[module.hugoVersion]` section. Directly following that section, before the
-   first `[[module.mounts]]` section, add the following (note indentation is
-   important!):
+5. Open the `config/_default/config.toml` file and find the `[module]` section.
+   At the top of that section, before the `[[module.mounts]]` items, insert the
+   following (note indentation is important!):
 
 ```toml
   [[module.imports]]
@@ -76,8 +74,8 @@ configuration file. Be sure to leave the Node `package*.json` files in place.
 
 ### Updating themes and dependencies
 
-[To update Doks](https://getdoks.org/docs/help/how-to-update/) and Doks
-dependencies, run `npm outdated` to get a list of Node packages (including Doks)
+[To update Hyas](https://gethyas.com/docs/help/how-to-update/) and Hyas
+dependencies, run `npm outdated` to get a list of Node packages (including Hyas)
 that have available updates, then run `npm update <pkg>` to update them
 selectively.
 
@@ -99,7 +97,7 @@ for updating to a specific version.
 
 ### Modifying the theme
 
-Settings from both Purple Prism and Doks can be overridden in the usual Hugo
+Settings from both Purple Prism and Hyas can be overridden in the usual Hugo
 way: Adding files to your site subdirectories (`assets`, `static`, `data`,
 `i18n`, etc.) with the same name as files in either theme will override those
 files.
