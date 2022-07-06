@@ -20,6 +20,7 @@
   "homepage": "https://github.com/exotica-jewelry/purple-prism#readme",
   "devDependencies": {
     "husky": "^8.0.1",
+    "instant.page": "^5.1.1",
     "prettier": "^2.7.1",
     "pretty-quick": "^3.1.3"
   }

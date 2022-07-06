@@ -44,20 +44,26 @@ for more information.
 2. `cd` into the directory you just created and run:
 
 ```sh
-wget https://github.com/h-enk/hyas-child-theme/archive/refs/heads/master.zip -O master.zip && unzip master.zip && cp -a hyas-child-theme-master/* . && rm -rf hyas-child-theme-master && rm -f theme.toml && rm -f config.toml && rm master.zip
+wget https://github.com/h-enk/hyas-child-theme/archive/refs/heads/master.zip -O master.zip && unzip master.zip && cp -a hyas-child-theme-master/* . && rm -rf hyas-child-theme-master && rm master.zip
 ```
 
-Optionally, you may want to remove the parent theme's Markdown files and Netlify
-configuration. Be sure to leave the Node `package*.json` files in place.
+3. Remove files unnecessary for a local theme, and the default Hugo config:
 
-3. Run `hugo mod init <repo_url>`, where `<repo_url>` is the protocol-less URL
+```sh
+rm -f theme.toml && rm -f config.toml && rm -rf images
+```
+
+Optionally, you may want to also remove the parent theme's Markdown files and
+Netlify configuration. Be sure to leave the Node `package*.json` files in place.
+
+4. Run `hugo mod init <repo_url>`, where `<repo_url>` is the protocol-less URL
    to your site's repo. For instance, this repo's URL would be
    `github.com/exotica-jewelry/purple-prism`. This will create a `go.mod` file.
 
-4. Run `hugo mod get github.com/exotica-jewelry/purple-prism`. This will create
+5. Run `hugo mod get github.com/exotica-jewelry/purple-prism`. This will create
    a `go.sum` file.
 
-5. Open the `config/_default/config.toml` file and find the `[module]` section.
+6. Open the `config/_default/config.toml` file and find the `[module]` section.
    At the top of that section, before the `[[module.mounts]]` items, insert the
    following (note indentation is important!):
 
@@ -66,10 +72,10 @@ configuration. Be sure to leave the Node `package*.json` files in place.
     path = "github.com/exotica-jewelry/purple-prism" # Theme components
 ```
 
-6. Run `npm install` (`yarn` won't work here, unfortunately) to pull in the Doks
+7. Run `npm install` (`yarn` won't work here, unfortunately) to pull in the Doks
    dependencies.
 
-7. Run `hugo server` to automatically download the Hugo modules and serve the
+8. Run `hugo server` to automatically download the Hugo modules and serve the
    site, viewable at [http://localhost:1313](http://localhost:1313).
 
 ### Updating themes and dependencies

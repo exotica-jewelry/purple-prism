@@ -1,0 +1,49 @@
+.section p {
+  margin: 1.5rem 0;
+  text-align: left;
+}
+
+a {
+  text-decoration: underline;
+}
+
+.btn {
+  text-decoration: none;
+}
+
+.btn-bold {
+  font-weight: bold;
+}
+
+.simpleicons {
+  width: 20px;
+  height: 20px;
+}
+
+.inline-icon {
+  vertical-align: text-top;
+  margin-top: 0.45rem;
+}
+
+.link-point {
+  margin-left: 2rem;
+  font-weight: bold;
+}
+
+@include media-breakpoint-up(sm) {
+  .img-align-right,
+  .img-align-left {
+    margin-top: 0;
+    width: calc(50% - 2rem);
+  }
+
+  .img-align-left {
+    float: left;
+    margin-right: 2rem;
+  }
+
+  .img-align-right {
+    float: right;
+    margin-left: 2rem;
+  }
+}
